@@ -57,6 +57,11 @@ Person.prototype.poop = function() {
   return this.stomach = []
 }
 
+Person.prototype.toString = function() {
+  return `${this.name}, ${this.age}`
+}
+
+
 
 
 /*
