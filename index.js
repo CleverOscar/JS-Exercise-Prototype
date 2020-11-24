@@ -102,6 +102,13 @@ function Baby(name, age, favoriteToy) {
   this.name = name;
   this.age = age;
   this.favoriteToy = favoriteToy;
+  this.play = function (){
+    return 'Playing with ' + this.favoriteToy
+  };
+}
+
+Baby.prototype.play = function (){
+    return `Playing with ${this.favoriteToy}`
 }
 
 
