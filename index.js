@@ -39,9 +39,30 @@ Airplane.prototype.land = function () {
         + It should return a string with `name` and `age`. Example: "Mary, 50"
 */
 
-function Person() {
-
+function Person(name, age) {
+  this.name = name;
+  this.age = age;
+  this.stomach = []
 }
+
+Person.prototype.eat = function(food) {
+  if (this.stomach.length >= 10){
+    return this.stomach
+  } else {
+    this.stomach.push(food)
+  }
+}
+
+Person.prototype.poop = function() {
+  return this.stomach = []
+}
+
+Person.prototype.toString = function() {
+  return `${this.name}, ${this.age}`
+}
+
+
+
 
 /*
   TASK 2
@@ -57,9 +78,17 @@ function Person() {
         + The `drive` method should return a string "I ran out of fuel at x miles!" x being `odometer`.
 */
 
-function Car() {
-
+function Car(model, milesPerGallon) {
+  this.model = model;
+  this.milesPerGallon = milesPerGallon;
+  this.tank = 0;
+  this.odometer = 0;
 }
+
+Car.prototype.fill = function(gallons) {
+  this.tank += gallons;
+}
+
 
 /*
   TASK 3
@@ -68,18 +97,46 @@ function Car() {
     - Besides the methods on Person.prototype, babies have the ability to `.play()`:
         + Should return a string "Playing with x", x being the favorite toy.
 */
-function Baby() {
-
+function Baby(name, age, favoriteToy) {
+  Person.call(this, name, age, favoriteToy);
+  this.name = name;
+  this.age = age;
+  this.favoriteToy = favoriteToy;
+  this.play = function (){
+    return 'Playing with ' + this.favoriteToy
+  };
 }
+
+Baby.prototype.play = function (){
+    return `Playing with ${this.favoriteToy}`
+}
+
+
+
+Baby.prototype = Object.create(Person.prototype)
+
 
 /* 
   TASK 4
 
   In your own words explain the four principles for the "this" keyword below:
-  1. 
-  2. 
-  3. 
-  4. 
+  1. Global / Window Binding, when using the key word 'this' in the global scope, the value of 'this' becomes the window object.   
+
+  2. Implicit Binding, when ever a preceeding dot calls a funciton, the object before the dot is 'this'
+      const myObj = {
+        greeting: 'Hello',
+        sayHello: function(name) {
+          console.log(`${this.greeting} my name is ${name}`);
+          console.log(this);
+        }
+      };
+
+
+  3. New Binding, when using the keyword 'this' during a constructor object, 'this' refers to the specific instance of the object being created and returned by the constructor. Where constructor is pretty much creating our new objects.
+
+  4. Explicit Binding, When ever we use the call() or apply() method the keyword 'this' explicitly defines the new function, 
+
+
 */
 
 
